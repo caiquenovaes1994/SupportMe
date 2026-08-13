@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoie meu trabalho</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('background.jpg') center/cover no-repeat fixed;
+            filter: blur(2px);
+            z-index: -1;
+            /* Evitar bordas brancas causadas pelo blur */
+            transform: scale(1.05);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .qr-code-section {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 16px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .qr-code-section img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            background-color: #f3f4f6;
+            border-radius: 8px;
+        }
+
+        .qr-code-section span {
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .copy-section {
+            text-align: left;
+        }
+
+        .copy-section label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            background: #f9fafb;
+            outline: none;
+            transition: border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0 1.25rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .platforms {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .platform-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-link:hover {
+            color: var(--primary);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Apoie meus projetos! 🚀</h1>
+            <p>Escaneie o QR Code abaixo com o app do seu banco para fazer um Pix de qualquer valor.</p>
+        </div>
+
+        <div class="qr-code-section">
+            <img src="qr_code_pix.jpg" alt="QR Code Pix" id="qr-code">
+            <span>Escaneie para apoiar</span>
+        </div>
+
+        <div class="copy-section">
+            <label for="pix-code">Ou utilize o Pix Copia e Cola:</label>
+            <div class="input-group">
+                <input type="text" id="pix-code" value="00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-426655440000" readonly onclick="copyToClipboard()">
+                <button class="copy-btn" id="copy-btn" onclick="copyToClipboard()" aria-label="Copiar código Pix">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>Copiar</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="platforms">
+            <h3 style="width: 100%; text-align: center; color: #800020; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; text-transform: uppercase;">----- Em Breve -----</h3>
+            <a href="#" class="platform-link" title="Buy me a coffee">
+                <img src="buymeacoffee-logo.webp" alt="Buy me a coffee" style="height: 60px; object-fit: contain;">
+            </a>
+            <a href="#" class="platform-link" title="Ko-fi">
+                <img src="ko-fi.png" alt="Ko-fi" style="height: 60px; object-fit: contain;">
+            </a>
+            <a href="#" class="platform-link" title="Patreon">
+                <img src="Patreon-Logo.png" alt="Patreon" style="height: 60px; object-fit: contain;">
+            </a>
+            <a href="#" class="platform-link" title="Apoia.se">
+                <img src="apoiase-logo.png" alt="Apoia.se" style="height: 30px; object-fit: contain;">
+            </a>
+            <a href="#" class="platform-link" title="Catarse">
+                <img src="catarse-logo.png" alt="Catarse" style="height: 30px; object-fit: contain;">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const copyText = document.getElementById("pix-code");
+            const copyBtn = document.getElementById("copy-btn");
+            const btnText = copyBtn.querySelector("span");
+            const btnIcon = copyBtn.querySelector("svg");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                // Update button visual state
+                copyBtn.classList.add("copied");
+                btnText.textContent = "Copiado!";
+                
+                // Change icon to checkmark
+                btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>';
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    copyBtn.classList.remove("copied");
+                    btnText.textContent = "Copiar";
+                    btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>';
+                    // Deselect text
+                    window.getSelection().removeAllRanges();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert("Erro ao copiar o código. Por favor, tente selecionar e copiar manualmente.");
+            });
+        }
+    </script>
+</body>
+</html>
