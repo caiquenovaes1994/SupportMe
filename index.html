@@ -72,7 +72,7 @@
         .header p {
             font-size: 0.95rem;
             color: var(--text-main);
-            margin-bottom: 2rem;
+            /* A margem foi movida para o inline style para acomodar o botão do Github */
             line-height: 1.5;
         }
 
@@ -198,8 +198,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Apoie meus projetos! 🚀</h1>
-            <p>Escaneie o QR Code abaixo com o app do seu banco para fazer um Pix de qualquer valor.</p>
+            <h1>Apoie meus projetos! ⭐</h1>
+            <p style="margin-bottom: 1.5rem;">Escaneie o QR Code abaixo com o app do seu banco para fazer um Pix de qualquer valor.</p>
+            
+            <!-- Link do GitHub -->
+            <a href="https://github.com/caiquenovaes1994/" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; padding: 0.5rem 1rem; border-radius: 12px; background: rgba(31, 41, 55, 0.05); text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: all 0.2s; border: 1px solid var(--border-color);" onmouseover="this.style.transform='scale(1.05)'; this.style.background='rgba(31, 41, 55, 0.1)';" onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(31, 41, 55, 0.05)';">
+                <img src="github-logo.png" alt="Meu GitHub" style="height: 24px; object-fit: contain;">
+                <span>@caiquenovaes1994</span>
+            </a>
         </div>
 
         <div class="qr-code-section">
