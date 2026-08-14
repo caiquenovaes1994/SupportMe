@@ -16,7 +16,7 @@
 
 Como compartilho o desenvolvimento das minhas aplicações e soluções de TI abertamente, criei o **SupportMe** — uma interface limpa e direta para facilitar o patrocínio dos meus projetos, focada no público brasileiro.
 
-O objetivo principal é **reduzir qualquer barreira ou taxa** no processo de apoio, oferecendo o **Pix** como método prioritário e preparando integrações com plataformas internacionais.
+O objetivo principal é **reduzir qualquer barreira ou taxa** no processo de apoio, oferecendo o **Pix** como método prioritário, além de integrações diretas com plataformas internacionais para receber apoios do exterior.
 
 ## ✨ Funcionalidades
 
