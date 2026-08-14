@@ -23,10 +23,10 @@ O objetivo principal é **reduzir qualquer barreira ou taxa** no processo de apo
 | Recurso | Descrição |
 | :--- | :--- |
 | 📱 **Design Responsivo** | Interface otimizada para desktop e mobile com glassmorphism e backdrop blur |
-| 🚀 **Pix Copia e Cola** | Botão interativo em JavaScript puro para copiar a chave Pix com um clique |
+| 🚀 **Pix Copia e Cola** | Botão inteligente com fallback de segurança em JavaScript para copiar a chave Pix com um clique |
 | 📷 **QR Code** | Imagem de QR Code pronta para escaneamento direto pelo app do banco |
 | 🔗 **Integração GitHub** | Link direto para o perfil do desenvolvedor |
-| 🔜 **Seção "Em Breve"** | Estrutura visual já preparada para futuras plataformas de apoio |
+| 🌍 **Plataformas Internacionais** | Integração oficial com widgets do **Buy Me a Coffee** e **Ko-fi** para apoios do exterior |
 
 ## 🛠️ Tecnologias
 
