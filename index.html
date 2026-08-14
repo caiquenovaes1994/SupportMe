@@ -219,14 +219,31 @@
             margin: 0 !important;
             min-width: auto !important;
             width: auto !important;
+            animation: btn-wiggle 4s infinite ease-in-out !important;
+            transform-origin: center !important;
         }
+
+        .bmc-btn:hover {
+            animation: none !important; /* Para a animação se o mouse estiver em cima */
+            transform: scale(1.02) !important;
+        }
+
         .bmc-btn img, .bmc-btn svg {
             width: 22px !important;
             height: 22px !important;
             margin: 0 !important;
             vertical-align: middle !important;
-            position: static !important; /* Força o ícone a não flutuar para a esquerda */
+            position: static !important;
         }
+
+        @keyframes btn-wiggle {
+            0%, 75%, 100% { transform: rotate(0deg) scale(1); }
+            80% { transform: rotate(2deg) scale(1.05); }
+            85% { transform: rotate(-2deg) scale(1.05); }
+            90% { transform: rotate(2deg) scale(1.05); }
+            95% { transform: rotate(-2deg) scale(1.05); }
+        }
+
         .bmc-btn span {
             margin: 0 !important; /* Remove margens extras do texto */
         }
