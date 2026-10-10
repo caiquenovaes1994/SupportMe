@@ -3,367 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoie meu trabalho</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-        :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border-color: #e5e7eb;
-            --success: #10b981;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            color: var(--text-main);
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('Background.jpg') center/cover no-repeat fixed;
-            filter: blur(2px);
-            z-index: -1;
-            /* Evitar bordas brancas causadas pelo blur */
-            transform: scale(1.05);
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
-
-        .header h1 {
-            font-size: calc(1.5rem - 1px);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .header p {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            /* A margem foi movida para o inline style para acomodar o botão do Github */
-            line-height: 1.5;
-        }
-
-        .qr-code-section {
-            background: white;
-            padding: 0.75rem;
-            border-radius: 16px;
-            display: inline-block;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .qr-code-section img {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
-            background-color: #f3f4f6;
-            border-radius: 8px;
-        }
-
-        .qr-code-section span {
-            display: block;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .copy-section {
-            text-align: center;
-        }
-
-        .copy-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 16px;
-            padding: 1rem 1.5rem;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-        }
-
-        .copy-btn:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-        }
-
-        .copy-btn.copied {
-            background: var(--success);
-        }
-
-        .platforms {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            background: rgba(31, 41, 55, 0.05);
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            border: 1px solid var(--border-color);
-        }
-
-        .github-btn:hover {
-            transform: scale(1.05);
-            background: rgba(31, 41, 55, 0.1);
-        }
-
-        .github-btn img {
-            height: 24px;
-            object-fit: contain;
-        }
-
-        .platforms h3 {
-            width: 100%;
-            text-align: center;
-            color: #800020;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
-            text-transform: uppercase;
-        }
-
-        .platforms p {
-            width: 100%;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            margin-bottom: 1rem;
-        }
-
-        .platforms table {
-            margin: 0 auto;
-            border-collapse: separate;
-            border-spacing: 15px 0;
-        }
-
-        .icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Ajustes visuais para o botão do Buy Me a Coffee */
-
-        .bmc-btn {
-            height: 38px !important;
-            min-height: 38px !important;
-            line-height: 38px !important;
-            padding: 0 16px !important; /* Espaço igual nas laterais */
-            font-size: 1.15rem !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px !important; /* Espaço certinho entre ícone e texto */
-            box-sizing: border-box !important;
-            margin: 0 !important;
-            min-width: auto !important;
-            width: auto !important;
-            animation: btn-wiggle 4s infinite ease-in-out !important;
-            transform-origin: center !important;
-        }
-
-        .bmc-btn:hover {
-            animation: none !important; /* Para a animação se o mouse estiver em cima */
-            transform: scale(1.02) !important;
-        }
-
-        .bmc-btn img, .bmc-btn svg {
-            width: 22px !important;
-            height: 22px !important;
-            margin: 0 !important;
-            vertical-align: middle !important;
-            position: static !important;
-        }
-
-        @keyframes btn-wiggle {
-            0%, 75%, 100% { transform: rotate(0deg) scale(1); }
-            80% { transform: rotate(2deg) scale(1.05); }
-            85% { transform: rotate(-2deg) scale(1.05); }
-            90% { transform: rotate(2deg) scale(1.05); }
-            95% { transform: rotate(-2deg) scale(1.05); }
-        }
-
-        .bmc-btn span {
-            margin: 0 !important; /* Remove margens extras do texto */
-        }
-
-        .fallback-box {
-            display: none;
-            margin-top: 1rem;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        .fallback-box p {
-            font-size: 0.85rem;
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .pix-raw-text {
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            background: #f9fafb;
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            word-break: break-all;
-            /* Garante que funciona no mobile (seleção com 1 toque) */
-            user-select: all;
-            -webkit-user-select: all;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <title>Caique Novaes | Apoie meus projetos / Support my work</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Apoie meus projetos! ⭐</h1>
-            <p style="margin-bottom: 1.5rem;">Escaneie o QR Code abaixo com o app do seu banco para fazer um Pix de qualquer valor.</p>
-            
-            <!-- Link do GitHub -->
-            <a href="https://github.com/caiquenovaes1994/" target="_blank" class="github-btn">
-                <img src="github-logo.png" alt="Meu GitHub">
-                <span>@caiquenovaes1994</span>
-            </a>
-        </div>
+    <div class="layout-wrapper">
+        <!-- Botão para expandir/recolher o painel de perfil no mobile -->
+        <button class="mobile-toggle-btn" id="mobile-toggle-btn" onclick="toggleMobileProfile()" aria-expanded="false" aria-controls="profile-panel">
+            <span id="mobile-toggle-text">Sobre Mim / About Me</span>
+            <svg class="toggle-icon" id="mobile-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </button>
 
-        <div class="qr-code-section">
-            <img src="qr_code_pix.jpg" alt="QR Code Pix" id="qr-code">
-            <span>Escaneie para apoiar</span>
-        </div>
+        <!-- Painel Lateral: Perfil e Informações -->
+        <aside class="profile-panel" id="profile-panel">
+            <!-- Card da Imagem com Foco Circular e Nome/Profissão Internos -->
+            <div class="profile-image-card">
+                <!-- Camada de fundo quadrada com blur e vinheta -->
+                <img src="profile.jpg" alt="" class="profile-card-bg-blur" aria-hidden="true">
+                <div class="profile-card-vignette"></div>
 
-        <div class="copy-section">
-            <button class="copy-btn" id="copy-btn" onclick="copyToClipboard()" aria-label="Copiar código Pix">
-                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                <span>Pix Copia e Cola</span>
-            </button>
-            
-            <div id="fallback-box" class="fallback-box">
-                <p>Seu navegador bloqueou a cópia automática.<br>Por favor, copie o código abaixo:</p>
-                <div class="pix-raw-text">00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-426655440000</div>
+                <!-- Círculo com foco nítido no rosto aumentado em 25% (220px) -->
+                <div class="profile-avatar-circle">
+                    <img src="profile.jpg" alt="Foto de perfil de Caique Novaes" class="profile-avatar-face">
+                </div>
+
+                <!-- Nome e Profissão dentro da imagem com fonte branca e contraste -->
+                <div class="profile-card-footer">
+                    <h2 class="profile-name">Caique Novaes</h2>
+                    <span class="profile-role">Software Developer</span>
+                </div>
             </div>
-        </div>
 
-        <div class="platforms">
-            <h3>----- Support Me -----</h3>
-            <p>If you're not in <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 504" width="18" height="13" style="vertical-align: middle; border-radius: 2px;"><rect width="720" height="504" fill="#009b3a"/><polygon points="360,86 634,252 360,418 86,252" fill="#fedf00"/><circle cx="360" cy="252" r="105" fill="#002776"/></svg>, please buy me a coffee.</p>
-            <table>
-                <tr>
-                    <td style="vertical-align: middle; padding: 0;">
-                        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="caiquenovaes" data-color="#FFDD00" data-emoji="☕️"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-                    </td>
-                    <td style="vertical-align: middle; padding: 0;">
-                        <!-- Widget do Ko-fi -->
-                        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                        <script type='text/javascript'>kofiwidget2.init('Buy me a ko-fi', '#72a4f2', 'W7N1252AZB');kofiwidget2.draw();</script>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <!-- Botões de Conexão Transparentes: GitHub e LinkedIn -->
+            <div class="profile-socials">
+                <a href="https://github.com/caiquenovaes1994/" target="_blank" rel="noopener noreferrer" class="social-btn">
+                    <img src="github-logo.png" alt="GitHub" class="social-icon">
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/caiquenovaes/" target="_blank" rel="noopener noreferrer" class="social-btn">
+                    <img src="linkedin-logo.png" alt="LinkedIn" class="social-icon">
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+
+            <!-- Biografia em Caixa de Texto Transparente (Sem Fundo, Apenas Borda) com Alternador de Idioma (SPA) -->
+            <div class="bio-section">
+                <div class="bio-header">
+                    <span class="bio-label" id="bio-title">Sobre Mim</span>
+                    <div class="lang-toggle" id="lang-toggle" role="tablist" aria-label="Seletor de idioma" data-lang="pt">
+                        <button class="lang-btn active" id="btn-pt" onclick="switchLang('pt')">PT</button>
+                        <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+                    </div>
+                </div>
+
+                <div class="bio-text">
+                    <!-- Versão em Português (Padrão) -->
+                    <div class="bio-lang active" id="bio-pt">
+                        <p>Sou Desenvolvedor de Software localizado no Brasil, especializado na criação de softwares confiáveis, escaláveis e de fácil manutenção utilizando <b>Python, JavaScript</b> e <b>TypeScript</b>. Minhas principais áreas de atuação abrangem sistemas de backend, APIs REST, aplicações frontend modernas e automações.</p>
+                        <p>Prezo profundamente por arquitetura limpa, experiência do desenvolvedor e soluções escaláveis — seja um microsserviço, uma ferramenta de linha de comando (CLI) ou uma aplicação web full-stack.</p>
+                    </div>
+
+                    <!-- Versão em Inglês -->
+                    <div class="bio-lang" id="bio-en">
+                        <p>I'm a Software Developer based in Brazil, specializing in building reliable, scalable, and maintainable software using <b>Python, JavaScript</b> and <b>TypeScript</b>. My focus areas span backend systems, REST APIs, modern frontend applications, and automation.</p>
+                        <p>I care deeply about clean architecture, developer experience, and solutions that scale — whether it's a microservice, a CLI tool, or a full-stack web application.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Painel Principal de Apoio -->
+        <main class="container">
+            <div class="header">
+                <h1>Apoie meus projetos! ⭐</h1>
+                <p>Escaneie o QR Code abaixo com o app do seu banco para fazer um Pix de qualquer valor.</p>
+            </div>
+
+            <!-- QR Code com Logo Oficial do Pix Centralizado e Alta Resolução -->
+            <div class="qr-code-section">
+                <img src="qr_code_pix.jpg" alt="QR Code Pix" id="qr-code">
+                <span>Escaneie para apoiar</span>
+            </div>
+
+            <div class="copy-section">
+                <button class="copy-btn" id="copy-btn" onclick="copyToClipboard()" aria-label="Copiar código Pix">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>Pix Copia e Cola</span>
+                </button>
+                
+                <div id="fallback-box" class="fallback-box">
+                    <p>Seu navegador bloqueou a cópia automática.<br>Por favor, copie o código abaixo:</p>
+                    <div class="pix-raw-text">00020101021126330014br.gov.bcb.pix0111408509258865204000053039865802BR5922CAIQUE C N DE OLIVEIRA6009SAO PAULO62070503***6304C35E</div>
+                </div>
+            </div>
+
+            <div class="platforms">
+                <h3>----- Support Me -----</h3>
+                <p>If you're not in <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 504" width="18" height="13" style="vertical-align: middle; border-radius: 2px;"><rect width="720" height="504" fill="#009b3a"/><polygon points="360,86 634,252 360,418 86,252" fill="#fedf00"/><circle cx="360" cy="252" r="105" fill="#002776"/></svg>, please buy me a coffee.</p>
+                <table>
+                    <tr>
+                        <td style="vertical-align: middle; padding: 0;">
+                            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="caiquenovaes" data-color="#FFDD00" data-emoji="☕️"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+                        </td>
+                        <td style="vertical-align: middle; padding: 0;">
+                            <!-- Widget do Ko-fi -->
+                            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+                            <script type='text/javascript'>kofiwidget2.init('Buy me a ko-fi', '#72a4f2', 'W7N1252AZB');kofiwidget2.draw();</script>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </main>
     </div>
 
-    <script>
-        function copyToClipboard() {
-            const pixCode = "00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-426655440000";
-            const copyBtn = document.getElementById("copy-btn");
-            const btnText = copyBtn.querySelector("span");
-            const btnIcon = copyBtn.querySelector("svg");
-            const fallbackBox = document.getElementById("fallback-box");
-
-            // Esconde o fallback se ele já estava visível
-            fallbackBox.style.display = 'none';
-
-            navigator.clipboard.writeText(pixCode).then(() => {
-                // Update button visual state
-                copyBtn.classList.add("copied");
-                btnText.textContent = "Copiado!";
-                
-                // Change icon to checkmark
-                btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>';
-
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    copyBtn.classList.remove("copied");
-                    btnText.textContent = "Pix Copia e Cola";
-                    btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>';
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                fallbackBox.style.display = 'block';
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

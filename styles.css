@@ -1,0 +1,808 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --card-bg: rgba(255, 255, 255, 0.45);
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --success: #10b981;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    font-family: 'Euclid Circular A', 'Euclid Ciruclar A', 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    color: var(--text-main);
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Background.jpg') center/cover no-repeat fixed;
+    filter: blur(1.5px);
+    z-index: -1;
+    /* Evitar bordas brancas causadas pelo blur */
+    transform: scale(1.05);
+}
+
+/* Layout em duas colunas responsivo */
+.layout-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+/* Altura fixada absoluta baseada no painel Pix (744px) */
+.profile-panel,
+.container {
+    height: 744px;
+    box-sizing: border-box;
+}
+
+/* Painel Lateral de Perfil */
+.profile-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 1.75rem 1.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Card da Imagem com Foco Circular e Efeito Blur ao Redor */
+.profile-image-card {
+    position: relative;
+    width: 100%;
+    height: 285px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    background: #18191c;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Imagem de fundo no quadrado com blur e vinheta */
+.profile-card-bg-blur {
+    position: absolute;
+    inset: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    object-fit: cover;
+    object-position: center top;
+    filter: blur(5px) brightness(0.55);
+    transform: scale(1.05);
+    pointer-events: none;
+    transition: transform 0.5s ease;
+}
+
+.profile-card-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.25) 85%);
+    pointer-events: none;
+}
+
+/* Círculo com foco no rosto */
+.profile-avatar-circle {
+    position: relative;
+    z-index: 2;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 5px rgba(25, 25, 30, 0.85),
+                0 0 28px 8px rgba(0, 0, 0, 0.5),
+                0 8px 24px rgba(0, 0, 0, 0.45);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.profile-avatar-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transform: scale(1.1);
+    transform-origin: center 25%;
+    transition: transform 0.5s ease;
+}
+
+.profile-image-card:hover .profile-avatar-circle {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 6px rgba(25, 25, 30, 0.95),
+                0 0 34px 10px rgba(0, 0, 0, 0.6),
+                0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.profile-image-card:hover .profile-avatar-face {
+    transform: scale(1.15);
+}
+
+.profile-image-card:hover .profile-card-bg-blur {
+    transform: scale(1.1);
+}
+
+/* Nome e Profissão dentro da Imagem */
+.profile-card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    padding: 2.2rem 1.25rem 1.25rem;
+    text-align: center;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.6) 40%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+}
+
+.profile-card-footer .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.profile-card-footer .profile-role {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.3rem;
+    display: block;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Botões de Redes Sociais */
+.profile-socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.social-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-radius: 28px;
+    background: rgba(200, 200, 200, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+    box-shadow: 4px 4px 0 rgba(140, 145, 160, 0.4), 5px 6px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    transform: translate(-2px, -2px);
+    background: rgba(255, 255, 255, 0.45);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 6px 6px 0 rgba(140, 145, 160, 0.45), 8px 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.social-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 rgba(140, 145, 160, 0.35), 2px 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* Caixa de Texto da Biografia Transparente */
+.bio-section {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+    padding: 1.25rem;
+    text-align: left;
+    box-shadow: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.bio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bio-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-main);
+    opacity: 0.85;
+}
+
+.bio-label.fade-in {
+    animation: titleFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes titleFade {
+    0% {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    100% {
+        opacity: 0.85;
+        transform: translateY(0);
+    }
+}
+
+/* Seletor de Idioma PT/EN com Deslizamento Suave */
+.lang-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    width: 76px;
+    box-sizing: border-box;
+    isolation: isolate;
+}
+
+/* Indicador (pill) que desliza suavemente entre PT e EN */
+.lang-toggle::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    background: var(--primary);
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+.lang-toggle[data-lang="en"]::before {
+    transform: translateX(100%);
+}
+
+.lang-btn {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 4px 0;
+    text-align: center;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.8s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.lang-btn:hover {
+    color: var(--text-main);
+}
+
+.lang-btn.active {
+    color: #ffffff;
+    background: transparent;
+    box-shadow: none;
+}
+
+.bio-text {
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--text-main);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bio-text p:not(:last-child) {
+    margin-bottom: 0.65rem;
+}
+
+.bio-lang {
+    display: none;
+}
+
+.bio-lang.active {
+    display: block;
+    animation: bioFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bioFade {
+    0% {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Painel Principal de Apoio */
+.container {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.header h1 {
+    font-size: calc(1.5rem - 1px);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.header p {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+}
+
+.qr-code-section {
+    background: white;
+    padding: 0.5rem;
+    border-radius: 16px;
+    display: inline-block;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.qr-code-section img {
+    width: 215px;
+    height: 215px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.qr-code-section span {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.copy-section {
+    text-align: center;
+}
+
+.copy-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    box-shadow: 4px 5px 0 #4338ca, 6px 8px 18px rgba(99, 102, 241, 0.35);
+}
+
+.copy-btn:hover {
+    background: var(--primary-hover);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 7px 0 #4338ca, 8px 12px 22px rgba(99, 102, 241, 0.4);
+}
+
+.copy-btn:active {
+    transform: translate(2px, 3px);
+    box-shadow: 1px 2px 0 #4338ca, 2px 3px 8px rgba(99, 102, 241, 0.3);
+}
+
+.copy-btn.copied {
+    background: var(--success);
+    box-shadow: 4px 5px 0 #059669, 6px 8px 18px rgba(16, 185, 129, 0.35);
+}
+
+.copy-btn.copied:hover {
+    box-shadow: 6px 7px 0 #059669, 8px 12px 22px rgba(16, 185, 129, 0.4);
+}
+
+.copy-btn.copied:active {
+    transform: translate(2px, 3px);
+    box-shadow: 1px 2px 0 #059669, 2px 3px 8px rgba(16, 185, 129, 0.3);
+}
+
+.platforms {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.platforms h3 {
+    width: 100%;
+    text-align: center;
+    color: #800020;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+}
+
+.platforms p {
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.platforms table {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 15px 0;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Ajustes visuais para o botão do Buy Me a Coffee */
+.bmc-btn {
+    height: 38px !important;
+    min-height: 38px !important;
+    line-height: 1 !important;
+    padding: 0 16px 0 20px !important;
+    font-size: 1.15rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    min-width: auto !important;
+    width: auto !important;
+    transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+    box-shadow: 4px 4px 0 #c29d00, 5px 6px 14px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+}
+
+.bmc-btn:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0 #c29d00, 7px 10px 18px rgba(0, 0, 0, 0.2) !important;
+}
+
+.bmc-btn:active {
+    transform: translate(2px, 2px) !important;
+    box-shadow: 1px 1px 0 #c29d00, 2px 3px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Animação e centralização exclusiva no emoji/ícone do Buy Me a Coffee */
+.bmc-btn-emoji,
+.bmc-btn img,
+.bmc-btn svg {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 22px !important;
+    height: 22px !important;
+    line-height: 1 !important;
+    font-size: 1.25rem !important;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif !important;
+    margin: 0 0 0 4px !important;
+    padding: 0 !important;
+    position: relative !important;
+    transform-origin: center bottom !important;
+    animation: kofi-wiggle 3s infinite ease-in-out !important;
+}
+
+.bmc-btn:hover .bmc-btn-emoji,
+.bmc-btn:hover img,
+.bmc-btn:hover svg {
+    animation: none !important;
+}
+
+@keyframes kofi-wiggle {
+    0% { transform: rotate(0) scale(1); }
+    60% { transform: rotate(0) scale(1); }
+    75% { transform: rotate(0) scale(1.12); }
+    80% { transform: rotate(0) scale(1.1); }
+    84% { transform: rotate(-10deg) scale(1.1); }
+    88% { transform: rotate(10deg) scale(1.1); }
+    92% { transform: rotate(-10deg) scale(1.1); }
+    96% { transform: rotate(10deg) scale(1.1); }
+    100% { transform: rotate(0) scale(1); }
+}
+
+.bmc-btn-text,
+.bmc-btn span:not(.bmc-btn-emoji) {
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
+}
+
+/* Ajustes visuais para o botão do Ko-fi */
+.kofi-button,
+a.kofi-button,
+.btn-container a {
+    transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+    box-shadow: 4px 4px 0 #467acb, 5px 6px 14px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+}
+
+.kofi-button:hover,
+a.kofi-button:hover,
+.btn-container a:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0 #467acb, 7px 10px 18px rgba(0, 0, 0, 0.2) !important;
+}
+
+.kofi-button:active,
+a.kofi-button:active,
+.btn-container a:active {
+    transform: translate(2px, 2px) !important;
+    box-shadow: 1px 1px 0 #467acb, 2px 3px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+.fallback-box {
+    display: none;
+    margin-top: 1rem;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.fallback-box p {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.pix-raw-text {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: #f9fafb;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    word-break: break-all;
+    user-select: all;
+    -webkit-user-select: all;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão expansor exclusivo para mobile (Glassmorphism) */
+.mobile-toggle-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 420px;
+    padding: 0.95rem 1.5rem;
+    border-radius: 20px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 4px 4px 0 rgba(140, 145, 160, 0.4), 0 8px 24px rgba(31, 38, 135, 0.12);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+}
+
+.mobile-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.65);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(140, 145, 160, 0.5), 0 10px 28px rgba(31, 38, 135, 0.16);
+}
+
+.mobile-toggle-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 rgba(140, 145, 160, 0.35), 0 3px 10px rgba(31, 38, 135, 0.1);
+}
+
+.mobile-toggle-btn .toggle-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    transition: transform 0.25s ease;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 860px) {
+    body {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .layout-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+    }
+
+    .mobile-toggle-btn {
+        display: inline-flex;
+    }
+
+    /* No mobile, o painel do perfil desce suavemente ao abrir e sobe suavemente ao fechar */
+    .profile-panel {
+        display: flex;
+        position: static;
+        top: auto;
+        padding: 0 1rem;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        border-width: 0;
+        border-color: transparent;
+        box-shadow: none;
+        margin-bottom: -1.25rem;
+        transform: translateY(-18px);
+        pointer-events: none;
+        visibility: hidden;
+        transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.35s ease,
+                    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    margin 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.35s ease,
+                    visibility 0.45s ease;
+    }
+
+    /* Quando expandido via botão no mobile */
+    .profile-panel.mobile-visible {
+        max-height: 850px;
+        opacity: 1;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        margin-bottom: 0;
+        border-width: 1px;
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        transform: translateY(0);
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Permite que os botões externos empilhem caso a tela do celular seja estreita */
+    .platforms table,
+    .platforms tbody,
+    .platforms tr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .platforms td {
+        display: inline-flex;
+        justify-content: center;
+        padding: 0 !important;
+    }
+}
