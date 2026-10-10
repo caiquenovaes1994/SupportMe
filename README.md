@@ -2,11 +2,12 @@
 
 # ☕ SupportMe
 
-**Landing page minimalista para centralizar opções de apoio financeiro.**
+**Landing page moderna com estética *glassmorphism* para apresentar portfólio, biografia e centralizar opções de apoio financeiro.**
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-222222?style=flat-square&logo=githubpages&logoColor=white)](https://pages.github.com/)
 
 </div>
 
@@ -14,19 +15,26 @@
 
 ## 📖 Sobre
 
-Como compartilho o desenvolvimento das minhas aplicações e soluções de TI abertamente, criei o **SupportMe** — uma interface limpa e direta para facilitar o patrocínio dos meus projetos, focada no público brasileiro.
+Como compartilho o desenvolvimento das minhas aplicações e soluções de software abertamente, criei o **SupportMe** — uma interface elegante, interativa e direta para apresentar meu perfil profissional e facilitar o patrocínio dos meus projetos.
 
-O objetivo principal é **reduzir qualquer barreira ou taxa** no processo de apoio, oferecendo o **Pix** como método prioritário, além de integrações diretas com plataformas internacionais para receber apoios do exterior.
+O objetivo principal é eliminar barreiras no processo de apoio, priorizando o **Pix** como método rápido para o público brasileiro e oferecendo integrações oficiais com plataformas internacionais (**Buy Me a Coffee** e **Ko-fi**) para apoiadores do exterior.
+
+---
 
 ## ✨ Funcionalidades
 
 | Recurso | Descrição |
 | :--- | :--- |
-| 📱 **Design Responsivo** | Interface otimizada para desktop e mobile com glassmorphism e backdrop blur |
-| 🚀 **Pix Copia e Cola** | Botão inteligente com fallback de segurança em JavaScript para copiar a chave Pix com um clique |
-| 📷 **QR Code** | Imagem de QR Code pronta para escaneamento direto pelo app do banco |
-| 🔗 **Integração GitHub** | Link direto para o perfil do desenvolvedor |
-| 🌍 **Plataformas Internacionais** | Integração oficial com widgets do **Buy Me a Coffee** e **Ko-fi** para apoios do exterior |
+| 👤 **Painel de Perfil & Bio Bilíngue** | Foto com zoom focal e vinheta de fundo, dados profissionais e alternador de idiomas (**PT/EN**) com indicador deslizante (*sliding pill*) e efeito de fade sincronizado. |
+| 💎 **Estética Glassmorphism** | Interface translúcida com desfoque de fundo (*backdrop blur*), bordas suaves iluminadas e plano de fundo imersivo. |
+| 🕹️ **Botões Táteis 3D** | Botões com projeção tridimensional (*box-shadow* à direita e abaixo) que respondem com afundamento realista ao clique. |
+| 🚀 **Pix Copia e Cola Inteligente** | Cópia com um clique da chave Pix com feedback visual imediato e caixa de fallback para compatibilidade. |
+| 📷 **QR Code Pix Integrado** | QR Code de alta precisão com nível de correção `H` (30%) e logotipo oficial do Pix centralizado. |
+| ☕ **Widgets Internacionais** | Botões integrados do **Buy Me a Coffee** e **Ko-fi**, com animação oscilante suave sincronizada no emoji/xícara. |
+| 📱 **Mobile First com Accordion** | Painel de perfil retrátil no mobile acionado pelo botão *Sobre Mim / About Me* com deslizamento suave ao abrir e fechar. |
+| ⚡ **SPA Leve e Modular** | Código 100% modularizado em HTML, CSS e JavaScript puros, pronto para publicação no GitHub Pages. |
+
+---
 
 ## 🛠️ Tecnologias
 
@@ -34,12 +42,30 @@ O objetivo principal é **reduzir qualquer barreira ou taxa** no processo de apo
 
 | Tecnologia | Uso |
 | :---: | :--- |
-| **HTML5** | Estrutura semântica da página |
-| **CSS3** | Estilização com variáveis CSS, glassmorphism e responsividade |
-| **JavaScript** | Lógica de cópia via Clipboard API |
-| **Google Fonts** | Tipografia com a fonte [Inter](https://fonts.google.com/specimen/Inter) |
+| **HTML5** | Estrutura semântica e acessível (Single Page Application) |
+| **CSS3 Vanilla** | Glassmorphism, animações com `@keyframes`, sombras 3D e media queries responsivas |
+| **JavaScript (ES6+)** | Lógica de cópia via Clipboard API, alternância bilíngue e sanfona mobile |
+| **Google Fonts** | Tipografia moderna utilizando a família [Poppins](https://fonts.google.com/specimen/Poppins) / Euclid Circular |
 
 </div>
+
+---
+
+## 📁 Estrutura de Arquivos
+
+```text
+SupportMe/
+├── index.html           # Estrutura semântica da aplicação
+├── styles.css           # Estilos globais, glassmorphism e animações
+├── script.js            # Funções de cópia, toggle de idioma e menu mobile
+├── Background.jpg       # Imagem de fundo imersiva com overlay
+├── profile.jpg          # Foto de perfil em alta definição
+├── qr_code_pix.jpg      # QR Code oficial do Pix com logotipo
+├── pix-logo.jpg         # Logotipo oficial do Pix
+├── github-logo.png      # Ícone oficial do GitHub
+├── linkedin-logo.png    # Ícone oficial do LinkedIn
+└── README.md            # Documentação do projeto
+```
 
 ---
 
