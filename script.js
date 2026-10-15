@@ -37,7 +37,13 @@ function switchLang(lang) {
 
     const titleEl = document.getElementById('bio-title');
     if (titleEl) {
-        titleEl.textContent = (lang === 'pt') ? 'Sobre Mim' : 'About Me';
+        if (lang === 'pt') {
+            titleEl.textContent = 'Sobre Mim';
+        } else if (lang === 'es') {
+            titleEl.textContent = 'Sobre Mí';
+        } else {
+            titleEl.textContent = 'About Me';
+        }
         titleEl.classList.remove('fade-in');
         void titleEl.offsetWidth; // Força reflow para reiniciar a animação
         titleEl.classList.add('fade-in');

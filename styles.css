@@ -302,7 +302,7 @@ body::before {
     }
 }
 
-/* Seletor de Idioma PT/EN com Deslizamento Suave */
+/* Seletor de Idioma PT/EN/ES com Deslizamento Suave */
 .lang-toggle {
     position: relative;
     display: inline-flex;
@@ -311,28 +311,36 @@ body::before {
     border-radius: 20px;
     padding: 3px;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    width: 76px;
+    width: 110px;
     box-sizing: border-box;
     isolation: isolate;
 }
 
-/* Indicador (pill) que desliza suavemente entre PT e EN */
+/* Indicador (pill) que desliza suavemente entre PT, EN e ES */
 .lang-toggle::before {
     content: '';
     position: absolute;
     top: 3px;
     bottom: 3px;
     left: 3px;
-    width: calc(50% - 3px);
+    width: calc((100% - 6px) / 3);
     background: var(--primary);
     border-radius: 16px;
     box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
-    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1;
+}
+
+.lang-toggle[data-lang="pt"]::before {
+    transform: translateX(0);
 }
 
 .lang-toggle[data-lang="en"]::before {
     transform: translateX(100%);
+}
+
+.lang-toggle[data-lang="es"]::before {
+    transform: translateX(200%);
 }
 
 .lang-btn {
