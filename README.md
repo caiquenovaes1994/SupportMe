@@ -25,7 +25,7 @@ O objetivo principal é eliminar barreiras no processo de apoio, priorizando o *
 
 | Recurso | Descrição |
 | :--- | :--- |
-| 👤 **Painel de Perfil & Bio Multilíngue** | Foto com zoom focal e vinheta de fundo, dados profissionais e alternador de idiomas (**PT/EN/ES**) com indicador deslizante (*sliding pill*) e efeito de fade sincronizado. |
+| 👤 **Painel de Perfil & Bio Bilíngue** | Foto com zoom focal e vinheta de fundo, dados profissionais e alternador de idiomas (**PT/EN**) com indicador deslizante (*sliding pill*) e efeito de fade sincronizado. |
 | 💎 **Estética Glassmorphism** | Interface translúcida com desfoque de fundo (*backdrop blur*), bordas suaves iluminadas e plano de fundo imersivo. |
 | 🕹️ **Botões Táteis 3D** | Botões com projeção tridimensional (*box-shadow* à direita e abaixo) que respondem com afundamento realista ao clique. |
 | 🚀 **Pix Copia e Cola Inteligente** | Cópia com um clique da chave Pix com feedback visual imediato e caixa de fallback para compatibilidade. |
